@@ -43,3 +43,11 @@ signupLoginLink.forEach(link => {
         }
     });
 });
+
+// Hide notification after 3 seconds
+const notification = document.querySelector('.notification');
+if (notification) {
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
+}

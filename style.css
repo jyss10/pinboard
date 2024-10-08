@@ -127,18 +127,28 @@ header {
 
 /* Notification styles */
 .notification {
-    display: none; /* Hidden by default */
-    padding: 15px; /* Reduced padding for a more compact look */
-    background-color: #4CAF50; /* Green background */
-    color: white; /* White text */
+    display: block;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
     border-radius: 5px;
-    margin: 20px auto; /* Center the notification */
+    margin: 20px auto;
     text-align: center;
-    width: 300px; /* Adjust as needed */
-    font-size: 16px; /* Slightly increased font size */
-    position: relative; /* For positioning */
-    opacity: 0; /* Start as invisible */
-    transition: opacity 0.5s ease; /* Fade effect */
+    width: 300px;
+    font-size: 16px;
+    position: relative;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.notification p {
+    margin: 0;
+}
+
+/* Optional: Hide notification after 3 seconds */
+.notification.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease;
 }
 
 .form-popup {

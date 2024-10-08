@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute the statement
     if ($stmt->execute()) {
-        // Redirect to index.php with a query parameter to show the notification
-        header("Location: index.php?signup=true");
+        // Redirect to index.php with a query parameter to show the login form and notification
+        header("Location: index.php?showLogin=true&signup=true");
         exit();
     } else {
         echo "Error: " . $stmt->error;

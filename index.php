@@ -30,6 +30,14 @@
         </nav>
     </header>
 
+    <!-- Notification for successful signup -->
+    <?php if (isset($_GET['signup']) && $_GET['signup'] == 'true'): ?>
+        <div class="notification">
+            Thank you for signing up!<br>
+            Your account has been created successfully.
+        </div>
+    <?php endif; ?>
+
     <div class="blur-bg-overlay"></div>
     <div class="form-popup">
         <span class="close-btn material-symbols-rounded">close</span>
@@ -98,57 +106,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Display login form if `showLogin` query parameter is true
+        <?php if (isset($_GET['showLogin']) && $_GET['showLogin'] == 'true'): ?>
+            document.body.classList.add("show-popup");
+            document.querySelector(".form-popup").classList.remove("show-signup");
+        <?php endif; ?>
+    </script>
 </body>
 </html>
-
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-
-// Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "user_registration";
-
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Hash the password for security
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    // Prepare and bind the SQL statement
-    $stmt = $conn->prepare("INSERT INTO users (email, username, password) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $email, $username, $hashed_password);
-
-    // Execute the statement
-    if ($stmt->execute()) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-
-    if ($stmt->execute()) {
-        header("Location: success.html"); // Create a success.html page
-        exit();
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-    
-
-    // Close the statement and connection
-    $stmt->close();
-    $conn->close();
-}
