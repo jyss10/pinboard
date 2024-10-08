@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Successful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .notification {
+            display: inline-block;
+            padding: 20px;
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            border-radius: 5px;
+            margin: 20px auto;
+        }
+    </style>
+    <script>
+        // Redirect to the landing page after 3 seconds
+        setTimeout(function() {
+            window.location.href = 'index.php'; // Change to your landing page URL
+        }, 3000); // Redirect after 3 seconds
+    </script>
+</head>
+<body>
+    <div class="notification">
+        <h2>Thank you for signing up!</h2>
+        <p>Your account has been created successfully.</p>
+    </div>
+    <p>You will be redirected to the landing page shortly...</p>
+</body>
+</html>
