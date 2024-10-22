@@ -125,6 +125,7 @@ header {
     background: #ddd;
 }
 
+
 /* Notification styles */
 .notification {
     display: block;
@@ -392,3 +393,4 @@ form button:hover {
         font-size: 0.9
     }
 }
+

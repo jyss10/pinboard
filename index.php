@@ -12,23 +12,28 @@
     <header>
         <nav class="navbar">
             <span class="hamburger-btn material-symbols-rounded">menu</span>
-            <a href="#" class="logo">
-                <img src="images/pinterestlogo.png" alt="logo">
-                <h2>PinBoard</h2>
+            <a href="index.php" class="logo">
+                <img src="img/pinterestlogo.png" alt="logo">
+                <h2>PINboard</h2>
             </a>
             <ul class="links">
                 <span class="close-btn material-symbols-rounded">close</span>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="#">Business</a></li>
                 <li><a href="#">Blog</a></li>
             </ul>
-        <div class="buttons">
-            <button class="login-btn">LOG IN</button>
-            <button class="signup-btn">SIGN UP</button>
-        </div>
+            <div class="buttons">
+                <button class="login-btn">LOG IN</button>
+                <button class="signup-btn">SIGN UP</button>
+            </div>
         </nav>
     </header>
+
+    <div class="wallpaper" style="display: flex;position:relative;justify-content:center;align-items:center;top:80px;height:calc(100vh - 80px);width:100%;">
+        <img src="img/Wallpaper.jpg" alt="wallpaper" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-1;">
+        <h1 style="text-align: center; z-index: 1;font-size: 350%;font-family:'Courier New', Courier, monospace;">Explore more in PINboard</h1>
+    </div>
 
     <!-- Notification for successful signup -->
     <?php if (isset($_GET['signup']) && $_GET['signup'] == 'true'): ?>
@@ -38,6 +43,7 @@
         </div>
     <?php endif; ?>
 
+    
     <div class="blur-bg-overlay"></div>
     <div class="form-popup">
         <span class="close-btn material-symbols-rounded">close</span>
@@ -48,15 +54,15 @@
             </div>
             <div class="form-content">
                 <h2>LOGIN</h2>
-                <form action="#">
+                <form action="login-handler.php" method="POST">
                     <div class="input-field">
                         <p>Email:</p>
-                        <input type="text" required>
+                        <input type="text" name="email" required>
                         <label>Enter your email</label>
                     </div>
                     <div class="input-field">
                         <p>Password:</p>
-                        <input type="password" required>
+                        <input type="password" name="password" required>
                         <label>Enter your password</label>
                     </div>
                     <a href="#" class="forgot-pass-link">Forgot password?</a>
@@ -94,8 +100,7 @@
                     </div>
                     <div class="policy-text">
                         <input type="checkbox" id="policy" required>
-                        <label for="policy">I agree the<a href="#" class="option">Terms & Conditions</a>
-                        </label>
+                        <label for="policy">I agree to the <a href="#" class="option">Terms & Conditions</a></label>
                     </div>
                     <button type="submit">Sign Up</button>
                 </form>
