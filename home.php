@@ -22,7 +22,30 @@ $response = file_get_contents($url);
 
 // Decode the JSON response into an associative array
 $images = json_decode($response, true);
+
+// Save image to the user's profile if requested
+if (isset($_POST['save_image'])) {
+    $imageUrl = $_POST['image_url'];  // Image URL to save
+
+    // Check if the file exists, otherwise create it
+    $savedImagesFile = 'saved_images.json';
+    if (file_exists($savedImagesFile)) {
+        $savedImages = json_decode(file_get_contents($savedImagesFile), true);
+    } else {
+        $savedImages = [];
+    }
+
+    // Add the new saved image
+    $savedImages[] = $imageUrl;
+
+    // Save the updated list back to the file
+    file_put_contents($savedImagesFile, json_encode($savedImages));
+    echo "<script>alert('Image saved to your profile!');</script>";
+}
 ?>
+
+<!-- The HTML and other parts stay the same as before -->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +67,7 @@ $images = json_decode($response, true);
         </form>
         <div class="icons">
             <a href="home.php"><p>Home</p></a>
-            <a href="#" id="profile">
+            <a href="profile.php" id="profile">
                 <img src="img/profile.png" alt="Profile">
                 <span class="profile-name"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
             </a>
@@ -66,7 +89,11 @@ $images = json_decode($response, true);
                     // Overlay with Share and Save options
                     echo '<div class="overlay">';
                     echo '<img src="img/share.png" alt="share icon">';
-                    echo '<p>&#9906; Save</p>';
+                    // Save Button Form
+                    echo '<form method="POST" action="home.php">';
+                    echo '<input type="hidden" name="image_url" value="' . htmlspecialchars($image['urls']['regular']) . '">';
+                    echo '<button type="submit" name="save_image"><p>&#9906; Save</p></button>';
+                    echo '</form>';
                     echo '</div>';
                     // Tile description and menu
                     echo '<div class="tile-bottom">';

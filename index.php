@@ -43,6 +43,20 @@
         </div>
     <?php endif; ?>
 
+
+    <?php 
+// Display login errors
+if (isset($_SESSION['login_error'])) {
+    echo "<div class='error'>".$_SESSION['login_error']."</div>";
+    unset($_SESSION['login_error']); // Clear after showing
+}
+
+// Display signup errors
+if (isset($_SESSION['signup_error'])) {
+    echo "<div class='error'>".$_SESSION['signup_error']."</div>";
+    unset($_SESSION['signup_error']); // Clear after showing
+}
+?>
     
     <div class="blur-bg-overlay"></div>
     <div class="form-popup">
